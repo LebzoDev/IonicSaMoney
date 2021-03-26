@@ -47,6 +47,7 @@ export class RetraitPage implements OnInit {
   requestCode(code:string){
       this.depotService.getTransactionByCode(code)
           .subscribe(data=>{
+            console.log(data[0].retrait);
               if (data[0]) {
 
                 this.transactionGot=data[0];
@@ -57,7 +58,7 @@ export class RetraitPage implements OnInit {
                 this.cniClient = this.transactionGot.cniClient;
                 this.nomCompletBeneficiaire = this.transactionGot.nomCompletBeneficiaire;
                 this.numTelBeneficiaire = this.transactionGot.numeroTelBeneficiaire;
-                if (this.transactionGot.retrait_effectif) {
+                if (this.transactionGot.retraitEffectif) {
                   this.retraitEffectif=true;              
                   console.log('effectif')
                   console.log(this.retraitEffectif)

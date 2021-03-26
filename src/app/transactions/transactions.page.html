@@ -11,12 +11,12 @@
   <hr>
   <section style="display: flex;justify-content: space-around;align-items: center;flex-direction: row;width: 90%;">
   
-      <section style="height: 5vh;border-bottom: 0.5vh solid #00a4f2;bottom: 0;display: flex;align-items: center;justify-content: center; flex-direction: row;cursor: pointer;">
+      <section (click)="activateMyOnly()" style="height: 5vh;border-bottom: 0.5vh solid #00a4f2;bottom: 0;display: flex;align-items: center;justify-content: center; flex-direction: row;cursor: pointer;">
           <ion-icon (click)="moveOnMenu()" style="color: #00a4f2;width: 6vw;" name="sync"></ion-icon>
           <p class="header-title">Mes transactions</p>
       </section>
 
-      <section style="height: 5vh;border-bottom: 0.5vh solid #00a4f2;bottom: 0;display: flex;align-items: center;justify-content: center; flex-direction: row;cursor: pointer;">
+      <section  (click)="activateAll()" style="height: 5vh;border-bottom: 0.5vh solid #00a4f2;bottom: 0;display: flex;align-items: center;justify-content: center; flex-direction: row;cursor: pointer;">
         <ion-icon (click)="moveOnMenu()" style="color: #00a4f2;width: 6vw;" name="swap-vertical"></ion-icon>
         <p class="header-title">Toutes les transactions</p>
       </section>
@@ -26,7 +26,7 @@
   </ion-header>
 
 <ion-content>
-  <table>
+  <table *ngIf="allTransactionaActivate">
     <tr>
         <th>Date</th>
         <th>Utilisateur</th>
@@ -38,7 +38,25 @@
     <tr *ngFor="let item of transactions; let index=i">
         <td>  {{item.dateTransaction | date:'dd/MM/YY' }} </td>
         <td *ngIf="item.type==='depot'">  {{item.utilisateurAP.prenom}} </td>
-        <td *ngIf="item.type==='retrait'">  {{item.utilisateurAP_Retrait.prenom}} </td>
+        <td *ngIf="item.type==='retrait'">  {{item.utilisateurAPRetrait.prenom}} </td>
+        <td>  {{item.type}} {{index}} </td>
+        <td>  {{item.montant}} </td>
+        <td>  {{item.frais}} </td>
+    </tr>
+  </table>
+  <table *ngIf="myOnlyTransactionActivate">
+    <tr>
+        <th>Date</th>
+        <th>Utilisateu</th>
+        <th>Type</th>
+        <th>Montant</th>
+        <th>Frais</th>
+    </tr>
+
+    <tr *ngFor="let item of transactions; let index=i">
+        <td>  {{item.dateTransaction | date:'dd/MM/YY' }} </td>
+        <td *ngIf="item.type==='depot'">  {{item.utilisateurAP.prenom}} </td>
+        <td *ngIf="item.type==='retrait'">  {{item.utilisateurAPRetrait.prenom}} </td>
         <td>  {{item.type}} {{index}} </td>
         <td>  {{item.montant}} </td>
         <td>  {{item.frais}} </td>

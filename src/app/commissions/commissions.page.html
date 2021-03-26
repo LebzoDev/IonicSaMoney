@@ -22,21 +22,25 @@
 
 <ion-content>
   <form [formGroup]="formgroup" (onchange)="requestAgain()">
-  <table style="display: flex;flex-direction: row;align-items: center;width: 90%;">
-  <tr style="width: 33%;height: 7vh;">
+  <table style="display: flex;flex-direction: row;align-items: center;width: 95%;">
+  <tr style="width: 30%;height: 7vh;">
       <ion-select style="border: 1px solid #00a4f2;height: 100%;color: #00a4f2;" (ionChange)="requestAgain()" formControlName="type" placeholder="type">
       <ion-select-option value="Tout">Tout</ion-select-option>
-        <ion-select-option *ngFor="let item of transactions" [value]="item.utilisateurAP">{{item.utilisateurAP.prenom}}</ion-select-option>
+        <ion-select-option *ngFor="let item of usersAgence" [value]="item">{{item.prenom}}</ion-select-option>
       </ion-select>
   </tr>
-   <tr style="flex-direction: row;display: flex;justify-content: center;align-items: center;width: 33%;height: 7vh;">
-    <ion-datetime style="color: #00a4f2;margin: 0;padding: 1vw;" displayFormat="MM/DD/YY" (ionChange)="requestAgain()"  formControlName="dateDebut"  placeholder="Debut"></ion-datetime>
+   <tr style="flex-direction: row;display: flex;justify-content: center;align-items: center;width: 30%;height: 7vh;">
+    <ion-datetime style="color: #00a4f2;margin: 0;padding: 1vw;" displayFormat="MM/DD/YY" (ionChange)="requestAgain()" [(ngModel)]="dateDebut"  formControlName="dateDebut"  placeholder="Debut"></ion-datetime>
     <ion-icon style="background: #00a4f2;"  name="calendar-number"></ion-icon> 
     </tr>
-    <tr style="flex-direction: row;display: flex;justify-content: center;align-items: center;width: 33%;height: 7vh;">
-      <ion-datetime style="color: #00a4f2;margin: 0;padding: 1vw;font-size: small;" (ionChange)="requestAgain()" formControlName="dateFin" displayFormat="MM/DD/YY"  placeholder="Fin"></ion-datetime>
+    <tr style="flex-direction: row;display: flex;justify-content: center;align-items: center;width: 30%;height: 7vh;">
+      <ion-datetime style="color: #00a4f2;margin: 0;padding: 1vw;font-size: small;" (ionChange)="requestAgain()" [(ngModel)]="dateFin"  formControlName="dateFin" displayFormat="MM/DD/YY"  placeholder="Fin"></ion-datetime>
       <ion-icon style="background: #00a4f2;"  name="calendar-number"></ion-icon> 
       </tr>
+    <tr>
+      <ion-icon (click)="ngOnInit()" style="color: #00a4f2;cursor: pointer;" name="refresh-circle">
+      </ion-icon>
+    </tr>
  
   </table>
   <hr>

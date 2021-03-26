@@ -91,7 +91,7 @@ export class MenuAdminPage implements OnInit,OnDestroy {
     this.depotService.getInfosAccount()
         .subscribe(
           data=>{
-           
+           console.log(data);
             if (!data['detailsCompte']['statut']) {
               this.solde = data['detailsCompte']['solde'];
             }

@@ -12,11 +12,11 @@ export interface Transaction{
   nomCompletBeneficiaire:string,
   numeroTelClient:string,
   numeroTelBeneficiaire:string,
-  retrait_effectif:boolean,
+  retraitEffectif:boolean,
   cniClient:string,
   cniBeneficiaire:string,
   utilisateurAP:Utilisateur,
-  utilisateurAP_Retrait:Utilisateur,
+  utilisateurAPRetrait:Utilisateur,
   part_user_depot:number,
   part_user_retrait?:number
 }

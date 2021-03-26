@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { apiURL } from 'src/environments/environment';
 import { Transaction } from './interfaces.service';
+import { formatDate } from '@angular/common';
 
 
 @Injectable({
@@ -21,15 +22,21 @@ export class DepotService {
   }
 
   retraitTransaction(transaction:any,id:number):Observable<any>{
-    return this.http.put(`${apiURL}agence/transactions/retrait/${id}`,transaction);
+    return this.http.put(`${apiURL}agence/transactions/${id}`,transaction);
   }
 
   getInfosAccount():Observable<any>{
     return this.http.get(`${apiURL}administrateur/getInfos`);
   }
 
-  getALlTransactions():Observable<any>{
-    return this.http.get(`${apiURL}agence/transactions`);
+  getALlTransactions(before?:Date,after?:Date):Observable<any>{
+    if (before && after) {
+      let bef = formatDate(before,'yyyy-MM-dd','en-US');
+      let aft = formatDate(after,'yyyy-MM-dd','en-US');
+      return this.http.get(`${apiURL}agence/transactions?dateTransaction[after]=${bef}&dateTransaction[before]=${aft}`);
+    }else{
+      return this.http.get(`${apiURL}agence/transactions`);
+    }
+   
   }
-
 }
