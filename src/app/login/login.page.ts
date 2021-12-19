@@ -23,6 +23,7 @@ export class LoginPage implements OnInit {
     this.initForm();
   }
 
+  //Initialisation du formulaire
   initForm(){
     this.formGroup =  new FormGroup ({
         username: new FormControl('',[Validators.required]),
@@ -30,6 +31,7 @@ export class LoginPage implements OnInit {
     })
   }
 
+  //La methode submit permet de verifier si le formulaire est valide
   loginProcess(){
     if(this.formGroup.valid){
       this.authService.login(this.formGroup.value)
@@ -37,7 +39,7 @@ export class LoginPage implements OnInit {
               if(result.token){
                 this.storage.set('token',result.token)
               }
-              //console.log(this.storage.get('token'));
+             //Redirection vers la page d'accueil
               this.router.navigateByUrl('tabs');
           },
           error=>{

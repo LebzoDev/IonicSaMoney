@@ -31,9 +31,10 @@ export class TokenInterceptorService implements  HttpInterceptor{
                 return next.handle(request);
               })
           )
+        }
 
-
-
+      }
+      
 
 
 
@@ -88,6 +89,3 @@ export class TokenInterceptorService implements  HttpInterceptor{
    
 
       
-    }
-
-}

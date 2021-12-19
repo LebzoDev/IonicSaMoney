@@ -16,6 +16,7 @@ export class AuthentificationService {
     private router:Router) { }
 
   login(data:any):Observable<any>{
+    //apiURL = 'http://localhost:3000/api/';
     return this.http.post(`${apiURL}login_check`,data);
   }
 
@@ -24,10 +25,12 @@ export class AuthentificationService {
   //   this.router.navigateByUrl('login');
   // }
 
+  //Fonction pour verifier si le token existe dans le storage
   connected(){
     return !!this.storage.get('token');
   }
 
+  //Fonction pour recuperer le token
    async getToken(){
     await this.storage.get('token').then(data=>{
         return data;
